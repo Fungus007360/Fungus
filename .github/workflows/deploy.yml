@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -63,15 +62,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-           - name: Show OIDC subject
+      - name: Show OIDC subject
         uses: actions/github-script@v7
         with:
           script: |
-            const token = await core.getIDToken('sts.amazonaws.com');
+            const token = await core.getIDToken('sts.amazonaws.com')
             const payload = JSON.parse(
               Buffer.from(token.split('.')[1], 'base64url').toString()
-            );
-            console.log(`sub: ${payload.sub}`);
+            )
+            console.log('OIDC subject = ' + payload.sub)
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
