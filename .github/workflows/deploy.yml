@@ -72,3 +72,5 @@ jobs:
       - name: Deploy website to S3
         run: |
           aws s3 sync app/ s3://fungus-website-435d11c7ec060606fd0ba8fc54 --delete
+
+          
