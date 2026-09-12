@@ -58,12 +58,11 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
+    
+           - name: Checkout repository
         uses: actions/checkout@v4
 
-              - name: Debug OIDC claims
+      - name: Debug OIDC claims
         uses: github/actions-oidc-debugger@main
         with:
           audience: sts.amazonaws.com
@@ -74,8 +73,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ap-southeast-2
 
-      - name: Deploy website to S3
+                - name: Deploy website to S3
         run: |
           aws s3 sync app/ s3://fungus-website-435d11c7ec060606fd0ba8fc54 --delete
-
-          
